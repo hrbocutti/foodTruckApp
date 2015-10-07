@@ -1,0 +1,68 @@
+<html>
+<html>
+<head>
+    <title>Principal</title>
+    <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="css/meuStyle.css" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <div class="container">
+            <div class="col-xs-12">
+                <div class="principal center">
+                    <span>teste</span>                  
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="btnFooter center">
+                    <a href="localizacao.html"><span>Enviar Localização</span></a>
+                </div>
+            </div>
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        $('.principal').html('Latitude: '  + position.coords.latitude     + '<br />' +
+                                  'Longitude: ' + position.coords.longitude    + '<br />');
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+    });
+
+    </script>
+</body>
+</html>
