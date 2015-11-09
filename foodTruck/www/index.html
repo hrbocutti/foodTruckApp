@@ -17,21 +17,24 @@
         <script type="text/javascript" src="js/index.js"></script>
 
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/parse-1.6.7.js"></script>
 </head>
 <body>
-    <div class="container">
-            <div class="col-xs-12">
+    <div class="container-fluid">
+    	<div class="row">
+            <div class="col-xs-12 col-md-12">
                 <div class="principal center">
                     <span>teste</span>                  
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-md-12">
                 <div class="btnFooter center">
-                    <a onclick="ExibirMapa()"><span>Enviar Localização</span></a>
+                    <a onclick="populaTabelaLocalizacao()"><span>Enviar Localização</span></a>
                 </div>
             </div>
 
-            <div style="display:none" id="map">teste aqui</div>   
+            <div class="col-md-12" style="display:none" id="map">teste aqui</div>   
+        </div>
 
     </div>
 
@@ -39,6 +42,23 @@
 
     function ExibirMapa(){
         $("#map").toggle('display','block');
+    }
+
+    function populaTabelaLocalizacao(){
+    	Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
+    	var foodTruckClass = Parse.Object.extend("FoodTruck");
+    	var food = new foodTruckClass();
+    	food.set("latitude", position.coords.latitude + "," + position.coords.longitude);
+
+    	food.save(null,{
+    		sucess:function(food){
+    			response.success(food);
+    		},
+    		error:function(food){
+    			response.error(error);
+    		}
+
+    	});
     }
 
     $(document).ready(function(){
