@@ -48,6 +48,11 @@
         <false/>
       </dict>
     </dict>
+	<key>Plugins</key>
+	<dict>
+		<key>Notification</key>
+		<string>CDVNotification</string>
+	</dict>
     <key>CFBundleIdentifier</key>
     <string>com.phonegap.helloworld</string>
     <key>CFBundleInfoDictionaryVersion</key>

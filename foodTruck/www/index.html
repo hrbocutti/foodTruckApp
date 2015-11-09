@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Principal</title>
-    <meta charset="utf-8" />
+    	<meta charset="UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
@@ -29,7 +29,7 @@
             </div>
             <div class="col-xs-12 col-md-12">
                 <div class="btnFooter center">
-                    <a onclick="populaTabelaLocalizacao()"><span>Enviar Localização</span></a>
+                    <a onclick="populaTabelaLocalizacao()"><span>Enviar Localiza&ccedil;&atilde;o</span></a>
                 </div>
             </div>
 
@@ -40,26 +40,50 @@
 
     <script type="text/javascript" charset="utf-8">
 
-    function ExibirMapa(){
-        $("#map").toggle('display','block');
-    }
-
     function populaTabelaLocalizacao(){
-    	Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
-    	var foodTruckClass = Parse.Object.extend("FoodTruck");
-    	var food = new foodTruckClass();
-    	food.set("latitude", position.coords.latitude + "," + position.coords.longitude);
 
-    	food.save(null,{
-    		sucess:function(food){
-    			response.success(food);
-    		},
-    		error:function(food){
-    			response.error(error);
-    		}
 
-    	});
+
+   	 	Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
+
+		var foodTruck = Parse.Object.extend("FoodTruck");
+		var foodTruckScore = new foodTruck();
+		var position = pegaPosicao(position);
+
+		if(position != undefined){
+		
+			foodTruckScore.save({
+			  localizacao: position
+			}, {
+			  success: function(foodTruck) {
+			    navigator.notification.alert("Enviado Com Sucesso", alertDismissed, 'Sucesso' ,'Ok');
+			  },
+			  error: function(foodTruck, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and message.
+			   navigator.notification.alert("Error" + error.message , alertDismissed, "Erro" ,'Ok');
+			  }
+			});
+
+		}
     }
+
+
+    function pegaPosicao(position){
+    	 navigator.geolocation.getCurrentPosition(onSuccessPosition, onError);
+    }
+
+    function onSuccessPosition(position) {
+        var element = position.coords.latitude + " , " + position.coords.longitude;
+    }
+
+     function onError(error) {
+     	navigator.notification.alert("Error" + error.message , alertDismissed, "Erro" ,'Ok');
+    }
+
+    function alertDismissed() {
+    // do something
+	}	
 
     $(document).ready(function(){
 
@@ -70,6 +94,9 @@
 
     // device APIs are available
     //
+
+    
+
     function onDeviceReady() {
         var options = { enableHighAccuracy: true };
         navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
