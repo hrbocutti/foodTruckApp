@@ -56,12 +56,12 @@
 			  localizacao: position
 			}, {
 			  success: function(foodTruck) {
-			    navigator.notification.alert("Enviado Com Sucesso", alertDismissed, 'Sucesso' ,'Ok');
+			    navigator.notification.alert('Enviado Com Sucesso', alertDismissed, 'Sucesso' ,'Ok');
 			  },
 			  error: function(foodTruck, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and message.
-			   navigator.notification.alert("Error" + error.message , alertDismissed, "Erro" ,'Ok');
+			   navigator.notification.alert('Error' + error.message , alertDismissed, 'Erro' ,'Ok');
 			  }
 			});
 
