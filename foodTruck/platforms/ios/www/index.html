@@ -1,8 +1,7 @@
 <html>
-<html>
 <head>
     <title>Principal</title>
-    <meta charset="utf-8" />
+    	<meta charset="UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
@@ -13,27 +12,68 @@
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="css/meuStyle.css" />
         
+        <script type="text/javascript" src="js/gmaps.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/parse-1.6.7.js"></script>
 </head>
 <body>
-    <div class="container">
-            <div class="col-xs-12">
+    <div class="container-fluid">
+    	<div class="row">
+            <div class="col-xs-12 col-md-12">
                 <div class="principal center">
                     <span>teste</span>                  
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-md-12">
                 <div class="btnFooter center">
-                    <a href="localizacao.html"><span>Enviar Localização</span></a>
+                    <a onclick="populaTabelaLocalizacao()"><span>Enviar Localiza&ccedil;&atilde;o</span></a>
                 </div>
             </div>
+               
+        </div>
 
     </div>
 
     <script type="text/javascript" charset="utf-8">
+
+    function populaTabelaLocalizacao(){
+
+
+
+   	 	Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
+
+		var foodTruck = Parse.Object.extend("FoodTruck");
+		var foodTruckScore = new foodTruck();
+		var position = pegaPosicao(position);
+
+		if(position != undefined){
+		
+			foodTruckScore.save({
+			  localizacao: position
+			}, {
+			  success: function(foodTruck) {
+			    
+			  },
+			  error: function(foodTruck, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and message.
+			  }
+			});
+
+		}else{
+			alert("Erro");
+		}
+    }
+    var Coords = {};
+
+    function pegaPosicao(){
+       return Coords.localizacao;
+    }	
+
+    
     $(document).ready(function(){
 
 
@@ -43,8 +83,12 @@
 
     // device APIs are available
     //
+
+    
+
     function onDeviceReady() {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        var options = { enableHighAccuracy: true };
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
     }
 
     // onSuccess Geolocation
@@ -53,8 +97,9 @@
         var element = document.getElementById('geolocation');
         $('.principal').html('Latitude: '  + position.coords.latitude     + '<br />' +
                                   'Longitude: ' + position.coords.longitude    + '<br />');
+        Coords.localizacao = position.coords.latitude +" , "+ position.coords.longitude;
+        
     }
-
     // onError Callback receives a PositionError object
     //
     function onError(error) {

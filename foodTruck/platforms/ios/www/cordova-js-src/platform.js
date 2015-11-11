@@ -1,4 +1,4 @@
-cordova.define("org.apache.cordova.geolocation.Position", function(require, exports, module) { /*
+/*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,17 +19,10 @@ cordova.define("org.apache.cordova.geolocation.Position", function(require, expo
  *
 */
 
-var Coordinates = require('./Coordinates');
-
-var Position = function(coords, timestamp) {
-    if (coords) {
-        this.coords = new Coordinates(coords.latitude, coords.longitude, coords.altitude, coords.accuracy, coords.heading, coords.velocity, coords.altitudeAccuracy);
-    } else {
-        this.coords = new Coordinates();
+module.exports = {
+    id: 'ios',
+    bootstrap: function() {
+        require('cordova/channel').onNativeReady.fire();
     }
-    this.timestamp = (timestamp !== undefined) ? timestamp : new Date();
 };
 
-module.exports = Position;
-
-});
