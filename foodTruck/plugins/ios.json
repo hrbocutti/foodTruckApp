@@ -61,7 +61,7 @@
         "org.apache.cordova.device-orientation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "org.apache.cordova.geolocation": {
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },

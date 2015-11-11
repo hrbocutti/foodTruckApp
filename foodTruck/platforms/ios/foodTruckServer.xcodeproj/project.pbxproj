@@ -43,7 +43,7 @@
 		F34490F0DDF443F7B0B3966F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBA964E9C4E463C8F0708D6 /* CoreMotion.framework */; };
 		FC2F3765D37742D2A428C2A4 /* CDVCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = E673461ACB454439913F118C /* CDVCompass.m */; };
 		A8605106FFAA4771A70BDBC3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED1513964E8449FB225EE3C /* CoreLocation.framework */; };
-		BCB2A6C1CDF14CF9999DAFD3 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FF40C9DD7D4E8DB63646C0 /* CDVLocation.m */; };
+		8A522A51165047F2A36E1E92 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6764769DD3044E75BE88A89A /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,8 +115,8 @@
 		E673461ACB454439913F118C /* CDVCompass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVCompass.m"; path = "org.apache.cordova.device-orientation/CDVCompass.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		E50AD0BDA0B94C6385C2ECC9 /* CDVCompass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVCompass.h"; path = "org.apache.cordova.device-orientation/CDVCompass.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		2ED1513964E8449FB225EE3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
-		71FF40C9DD7D4E8DB63646C0 /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "org.apache.cordova.geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		67561A6337854273ABB74C11 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "org.apache.cordova.geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		6764769DD3044E75BE88A89A /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		85562D2F494B49BCB25B0FBA /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +223,8 @@
 				E301384FDC0E4C8AAEC9C864 /* CDVAccelerometer.h */,
 				E673461ACB454439913F118C /* CDVCompass.m */,
 				E50AD0BDA0B94C6385C2ECC9 /* CDVCompass.h */,
-				71FF40C9DD7D4E8DB63646C0 /* CDVLocation.m */,
-				67561A6337854273ABB74C11 /* CDVLocation.h */,
+				6764769DD3044E75BE88A89A /* CDVLocation.m */,
+				85562D2F494B49BCB25B0FBA /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "foodTruckServer/Plugins";
@@ -411,7 +411,7 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				8935F6F2F259435B96E139EF /* CDVAccelerometer.m in Sources */,
 				FC2F3765D37742D2A428C2A4 /* CDVCompass.m in Sources */,
-				BCB2A6C1CDF14CF9999DAFD3 /* CDVLocation.m in Sources */,
+				8A522A51165047F2A36E1E92 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
