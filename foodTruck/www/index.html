@@ -29,7 +29,11 @@
             </div>
             <div class="col-xs-12 col-md-12">
                 <div class="btnFooter center">
-                    <a onclick="populaTabelaLocalizacao()"><span>Enviar Localiza&ccedil;&atilde;o</span></a>
+                    <button class="btn btn-circle btn-default btnShadow" onclick="populaTabelaLocalizacao()">
+                    	<i class="fa fa-map-marker fa-3x"></i><br>
+                    	<span class="div_text_shadow"> Check-In</span>
+                    </button>
+                    
                 </div>
             </div>
                
@@ -38,6 +42,7 @@
     </div>
 
     <script type="text/javascript" charset="utf-8">
+
 
     function populaTabelaLocalizacao(){
 
@@ -55,16 +60,32 @@
 			  localizacao: position
 			}, {
 			  success: function(foodTruck) {
-			    
+			    navigator.notification.alert(
+				    'Localização Compartilhada com Sucesso!',  // message
+				    null,         // callback
+				    'Minha Localização',            // title
+				    'Ok'                  // buttonName
+				);
 			  },
 			  error: function(foodTruck, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and message.
+			    navigator.notification.alert(
+				    'Erro ao Compartilhada Localização!',  // message
+				    null,         // callback
+				    'Minha Localização',            // title
+				    'Ok'                  // buttonName
+				);
 			  }
 			});
 
 		}else{
-			alert("Erro");
+			navigator.notification.alert(
+				    error.message,  // message
+				    null,         // callback
+				    'Error',            // title
+				    'Ok'                  // buttonName
+				);
 		}
     }
     var Coords = {};

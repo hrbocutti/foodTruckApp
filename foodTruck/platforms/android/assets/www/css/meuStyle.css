@@ -3,7 +3,7 @@
 }
 
 body{
-	background-color: #4538ff;
+	background-color: rgb(186, 186, 186);
 	padding-top: 20px;
 
 	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -74,8 +74,28 @@ body{
 }
 
 .btnFooter{
-	width: 300px;
-	margin: 80% auto 10% auto;
-	background-color:rgba(255,255,255,0.8);
-	border-radius: 10px;
+	width: 150px;
+    height: 150px;
+	margin: 50% auto 10% auto;
+	/*background-color:rgba(255,255,255,0.8);
+	border-radius: 10px;*/
+}
+
+.btn-circle {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  line-height: 2;
+  border-radius: 50%;
+}
+
+.btnShadow{
+    box-shadow: 2px 2px 0px 0px rgba(50,50,50,0.5);
+}
+
+.div_text_shadow 
+{
+color: rgb(97, 97, 97);
+font-size: 20px;
+text-shadow: rgb(224, 224, 224) 1px 1px 0px;
 }
