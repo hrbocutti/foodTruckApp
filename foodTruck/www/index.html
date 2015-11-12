@@ -55,11 +55,24 @@
 			  localizacao: position
 			}, {
 			  success: function(foodTruck) {
+
+                window.alert = function (message){
+                    navigator.notification.alert("Localização Compartilhada com Sucesso ! ", 
+                             null,
+                        "Sucesso", 
+                            "Ok");
+                };
 			    
 			  },
 			  error: function(foodTruck, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and message.
+                window.alert = function (message){
+                    navigator.notification.alert("Error :" + error.message, 
+                             null,
+                        "Sucesso", 
+                            "Ok");
+                };
 			  }
 			});
 
