@@ -41,8 +41,7 @@
 
     </div>
 
-    <script type="text/javascript" charset="utf-8">
-
+    <script>
 
     function populaTabelaLocalizacao(){
 
@@ -76,6 +75,7 @@
 				    'Minha Localização',            // title
 				    'Ok'                  // buttonName
 				);
+
 			  }
 			});
 
@@ -88,15 +88,27 @@
 				);
 		}
     }
+
+    var Address = {};
     var Coords = {};
 
     function pegaPosicao(){
        return Coords.localizacao;
     }	
 
+    function getEndereco(){
+
+     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyAsSbtwB7GhU-H0Yv_rX83PMO7Uk95V7Ys',function(data) {
+        var location = data.results[0].formatted_address;
+        // coordinates are location.lat and location.lng
+        $('.principal').append("Endereço: " + location);
+     });
+    }
+
     
     $(document).ready(function(){
 
+    
 
     // Wait for device API libraries to load
     //
@@ -115,10 +127,12 @@
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-        var element = document.getElementById('geolocation');
+        Coords.localizacao = position.coords.latitude +" , "+ position.coords.longitude;
+        
         $('.principal').html('Latitude: '  + position.coords.latitude     + '<br />' +
                                   'Longitude: ' + position.coords.longitude    + '<br />');
-        Coords.localizacao = position.coords.latitude +" , "+ position.coords.longitude;
+        getEndereco();
+        
         
     }
     // onError Callback receives a PositionError object
