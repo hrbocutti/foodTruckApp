@@ -29,9 +29,9 @@
             </div>
             <div class="col-xs-12 col-md-12">
                 <div class="btnFooter center">
-                    <button class="btn btn-circle btn-default btnShadow" onclick="populaTabelaLocalizacao()">
+                    <button class="btn btn-circle btn-default btnShadow" onclick="abrirMapa();">
                     	<i class="fa fa-map-marker fa-3x"></i><br>
-                    	<span class="div_text_shadow"> Check-In</span>
+                    	<span class="div_text_shadow">Check-In</span>
                     </button>
                     
                 </div>
@@ -43,18 +43,11 @@
 
     <script>
 
-    var teste = {'nome':'teste' , 'idade': 22};    
-    
-    function getEndereco(){
-
-     alert(Coords.localizacao);
-     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyAsSbtwB7GhU-H0Yv_rX83PMO7Uk95V7Ys',function(data) {
-        var location = data.results[0].formatted_address;
-        alert(location);
-        // coordinates are location.lat and location.lng
-    });
+    function abrirMapa(){
+        var lat = Coords.localizacaoLat;
+        var lng = Coords.localizacaoLng;
+        window.location.href="map_canvas.html?lat="+lat+"&lng="+lng;
     }
-
 
     function populaTabelaLocalizacao(){
 
@@ -101,11 +94,22 @@
 				);
 		}
     }
+
+    var Address = {};
     var Coords = {};
 
     function pegaPosicao(){
        return Coords.localizacao;
     }	
+
+    function getEndereco(){
+
+     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyAsSbtwB7GhU-H0Yv_rX83PMO7Uk95V7Ys',function(data) {
+        var location = data.results[0].formatted_address;
+        // coordinates are location.lat and location.lng
+        $('.principal').append("Endereço: " + location);
+     });
+    }
 
     
     $(document).ready(function(){
@@ -129,11 +133,15 @@
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-        Coords.localizacao = position.coords.latitude +" , "+ position.coords.longitude;
+        Coords.localizacao = position.coords.latitude+", "+position.coords.longitude;
+
+        Coords.localizacaoLat = position.coords.latitude;
+        Coords.localizacaoLng = position.coords.longitude;
         
         $('.principal').html('Latitude: '  + position.coords.latitude     + '<br />' +
                                   'Longitude: ' + position.coords.longitude    + '<br />');
         getEndereco();
+        
         
     }
     // onError Callback receives a PositionError object
