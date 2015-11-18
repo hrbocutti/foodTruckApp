@@ -104,7 +104,7 @@
 
     function getEndereco(){
 
-     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyAsSbtwB7GhU-H0Yv_rX83PMO7Uk95V7Ys',function(data) {
+     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyCFqAbU6JQNyEgc46IgNR31Qze83PYJcQw',function(data) {
         var location = data.results[0].formatted_address;
         // coordinates are location.lat and location.lng
         $('.principal').append("Endereço: " + location);
@@ -133,7 +133,7 @@
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-        Coords.localizacao = position.coords.latitude+", "+position.coords.longitude;
+        Coords.localizacao = position.coords.latitude+","+position.coords.longitude;
 
         Coords.localizacaoLat = position.coords.latitude;
         Coords.localizacaoLng = position.coords.longitude;

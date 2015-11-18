@@ -48,16 +48,9 @@
                 content: contentString
               });
 
-            /*
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
                 title: "Teste !"
-            });
-            */
-
-            var marker = new google.maps.Marker({
-                        position: pegarLocalizacao(var lat, var lng),
-                        title: "Teste !"
             });
             
             marker.addListener('click', function() {
@@ -112,25 +105,15 @@
           });
         });
 
-        function pegarLocalizacao(lat , lng){
-            qsParametro = new Array();
-            for (var i = arrayLocalizacao.length - 1; i >= 0; i--) {
-                var pos = arrayLocalizacao[i].indexOf(",");
-                if(pos > 0){
-                    var key = arrayLocalizacao[i].substring(0,pos);
-                    var val = arrayLocalizacao[i].substring(pos + 1);
-                    qsParametro[i] = val;
-                }
+       //TODO 
 
-                    var lat = qsParametro[0];
-                    var lng = qsParametro[1];
-                    this.lat = lat;
-                    this.lng = lng;
+       /** 
 
-            };
-        }
+       Function para pegar o arrayLocalizacao e dividir em longitude e latitude 
 
-        </script>
+       */ 
+
+    </script>
 
     </head>
     <body>
