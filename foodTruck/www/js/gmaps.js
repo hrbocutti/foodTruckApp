@@ -16,18 +16,13 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
        // app.receivedEvent('deviceready');
-       var options = {enableHighAccuracy: true, timeout: 27000, maximumAge: 30000};
-       navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError, options);
+       navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
     },
 
     onSuccess: function(position){
         var longitude = position.coords.longitude;
         var latitude = position.coords.latitude;
         var latLong = new google.maps.LatLng(latitude, longitude);
-
-        var address = "latitude: "+latitude+"longitude: "+latitude;
-
-        var contentString = address;
 
         var mapOptions = {
             center: latLong,
@@ -36,21 +31,12 @@ var app = {
         };
 
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	   
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString,
-            maxWidth: 200
-        });
-
+    
         var marker = new google.maps.Marker({
               position: latLong,
               map: map,
               title: 'my location'
           });
-        marker.addListener('click',function(){
-            infowindow.open(map, marker);
-        });
-
     },
     
     onError: function(error){

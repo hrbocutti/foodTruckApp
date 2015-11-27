@@ -4,18 +4,23 @@
         <meta charset="UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
+        
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="css/meuStyle.css" />
-        
-        <script type="text/javascript" src="js/gmaps.js"></script>
+
+        <!-- First of all  -->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+        </script>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
+        <script type="text/javascript" src="js/queryTabelas.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
         <script type="text/javascript" src="js/parse-1.6.7.js"></script>
         <style>
@@ -24,47 +29,13 @@
             padding: 0;
             height: 100%;
             }
-        </style>
-
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true?key=AIzaSyCFqAbU6JQNyEgc46IgNR31Qze83PYJcQw"></script>
+        </style>       
         
         <script>
 
         Localizacao = {};
+        var makerLatLng = new Array();
 
-        var map;
-            function initialize() {
-            var mapOptions = {
-            zoom: 17,
-            center: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            map = new google.maps.Map(document.getElementById('map_canvas'),
-            mapOptions);
-
-            var contentString = "teste";
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-              });
-
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
-                title: "Teste !"
-            });
-            
-            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            });
-
-            // To add the marker to the map, call setMap();
-            marker.setMap(map);
-
-            }
-             
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-        
         $(document).ready(function () {                  
             function qs() {
                 var qsparam = new Array(10);
@@ -85,34 +56,85 @@
                     Localizacao.lng = lng;
             }
                 var splitstr = qs();
+                queryTabela();
         });
 
+        var map;
+        function initialize() {
+        var mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+        mapOptions);
 
-        Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
+        var contentString = "teste";
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+        var marker , i;
+
+        for(var i = 0; i < makerLatLng.length; i++){
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(makerLatLng[i][0][0] , 
+                                                 makerLatLng[i][0][1]),
+                map: map
+            });
+         google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(makerLatLng[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+
+        /*
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
+            title: "Teste !"
+        });
+        
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+        
+        // To add the marker to the map, call setMap();
+        marker.setMap(map);
+        */
+        }
+        
+         
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        $(document).delegate('#map_canvas', 'pageinit', function () {
+            navigator.geolocation.getCurrentPosition(initialize);
+        });
+
+        function queryTabela(){
+
+         Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
         var arrayLocalizacao = [];
         var foodTruck = Parse.Object.extend("FoodTruck");
         var query = new Parse.Query(foodTruck);
         query.select("localizacao");
         query.find({
           success:function(results) {
-        for (var i = 0; i < results.length; i++) {
+            var latLngMaker = new Array();
+            for (var i = 0; i < results.length; i++) {
               var object = results[i];
               arrayLocalizacao[i] = object.get("localizacao");
+              latLngMaker = arrayLocalizacao[i].split(',');
+              makerLatLng[i] = new Array(1);
+              for(var j = 0 ; j < 1 ; j++){
+                makerLatLng[i][j] = [latLngMaker[0],latLngMaker[1]];
+              }
             }
-          },
-          error: function({
-            console.log("Error: " + error.message);
-          });
-        });
-
-       //TODO 
-
-       /** 
-
-       Function para pegar o arrayLocalizacao e dividir em longitude e latitude 
-
-       */ 
-
+          }
+        });       
+       }
     </script>
 
     </head>
