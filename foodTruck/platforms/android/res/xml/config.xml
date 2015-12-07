@@ -15,9 +15,9 @@
         <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
     </feature>
     <allow-intent href="market:*" />
-    <name>foodTruckServer</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
+    <name>FoodTruck</name>
+    <description>Aplicativo para compartilhamento de localização</description>
+    <author email="higor_rafael.sp@hotmail.com" href="">Higor Rafael Bocutti</author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />

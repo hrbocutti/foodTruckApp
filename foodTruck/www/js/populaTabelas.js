@@ -43,3 +43,33 @@ function populaTabelaLocalizacao(){
 			);
 	}
 }
+
+function populaTabelaCliente(){
+	var enc = CryptoJS.Rabbit.encrypt($("#password").val(), "appFoodTruck");
+	var data      = {};
+	data.user     = $("#user").val();
+	data.password = enc.toString();
+
+    //var decrypted = CryptoJS.Rabbit.decrypt(encrypted, "appFoodTruck");
+
+	Parse.initialize("4tghv6GjleCbjLsaAem8jH12IceJRr26qSAAsbka", "r3fXhrjJuCbASHszvQlmHm5A5tcdZaw98zp8znal");
+
+	var cadastroUsuario = Parse.Object.extend("usuario");
+	var cadastroUsuarioSave = new cadastroUsuario();
+	
+	cadastroUsuarioSave.save(data,{
+		sucess:function(){
+			navigator.notification.alert(
+			    'Dados Salvo com sucesso',  // message
+			    null,         // callback
+			    'Novo Cadastro',            // title
+			    'Ok'                  // buttonName
+			);
+		},
+		error:function(error){
+			console.log("Erro: "+message.error);
+
+		}
+	});
+
+}

@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>Principal</title>
+    	<meta charset="UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="css/meuStyle.css" />
+        
+        <script type="text/javascript" src="js/gmaps.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+
+        <script type="text/javascript" src="js/rabbit.js"></script>
+        <script type="text/javascript" src="js/populaTabelas.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/parse-1.6.7.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="principal center">
+                    <p>Cadastro</p>                
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <form id="formCadastroCliente">
+                    <div class="form-group">
+                    <input type="text" class="form-control form_centralizado form-80" id="user" placeholder="Usu&aacute;rio" name="user" required>
+                    </input>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control form_centralizado form-80 " id="password" placeholder="Senha" name="password" required>
+                    </input>
+                    </div>
+                    <div class="center">
+                        <button type="submit" onclick="populaTabelaCliente();" class="btn btn-default">
+                           Adicionar <i class="fa fa-user-plus"></i>
+                        </button>
+                        <button class="btn btn-default" onclick="limparForm();">
+                            Limpar <i class="fa fa-eraser"></i>
+                        </button>
+                        <button class="btn btn-default" onclick="voltarTelaInicial();">
+                            Cancelar <i class="fa fa-ban"></i> 
+                        </button>
+                    </div>
+                </form>
+            </div>     
+        </div>
+    </div>
+</body>
+</html>

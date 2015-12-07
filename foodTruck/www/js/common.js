@@ -52,3 +52,11 @@ function getEndereco(){
  });
 
 }
+
+function voltarTelaInicial(){
+    window.location.assign("index.html");
+}
+
+function limparForm(){
+    $("#form").reset();
+}
