@@ -25,7 +25,7 @@ function latLngGps(){
         Coords.localizacaoLat = position.coords.latitude;
         Coords.localizacaoLng = position.coords.longitude;
         
-        $('.principal').html('Latitude: '  + position.coords.latitude     + '<br />' +
+        $('.principal.topo').html('Latitude: '  + position.coords.latitude     + '<br />' +
                                   'Longitude: ' + position.coords.longitude    + '<br />');
         getEndereco();
         
@@ -48,7 +48,23 @@ function getEndereco(){
  $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng='+Coords.localizacao+'&apikey=AIzaSyCFqAbU6JQNyEgc46IgNR31Qze83PYJcQw',function(data) {
     var location = data.results[0].formatted_address;
     // coordinates are location.lat and location.lng
-    $('.principal').append("Endereço: " + location);
+    $('.principal.topo').append("Endereço: " + location);
  });
 
+}
+
+function voltarTelaInicial(){
+    window.location.assign("index.html");
+}
+
+function registarNovoUsuario(){
+    window.location.assign("cadastro.html");
+}
+
+function limparForm(){
+    $("input").val("");
+}
+
+function paginaRecuperarLoginSenha(){
+    window.location.assign("recuperar.html");
 }

@@ -3,7 +3,7 @@
 }
 
 body{
-	background-color: rgb(186, 186, 186);
+	/*background-color: rgb(186, 186, 186);*/
 	padding-top: 20px;
 
 	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -68,9 +68,17 @@ body{
 .principal{
 	margin-top:100px !important;
 	width: 300px;
-	background: rgba(255,255,255,0.8);
+	/*background: rgba(255,255,255,0.8);*/
 	margin: 0 auto;
 	border-radius: 10px;
+}
+
+.principal.topo{
+    margin-top:100px !important;
+    width: 300px;
+    background: rgba(255,255,255,0.8);
+    margin: 0 auto;
+    border-radius: 10px;
 }
 
 .btnFooter{
@@ -99,3 +107,48 @@ color: rgb(97, 97, 97);
 font-size: 20px;
 text-shadow: rgb(224, 224, 224) 1px 1px 0px;
 }
+
+.btnLogin{
+    width: 100px;
+    border-radius: 5px;
+    border:1px solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.btnLogin.red{
+    background-color: rgb(193, 11, 11);
+    color: white;
+     border:1px solid black;
+}
+
+.bloco_cadastro{
+    border: 1px solid #ccc;
+}
+
+.form-control-login{
+    display: inline;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 12px;
+    background-color: #F3F3F3;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #E6E6E6;
+    border-radius: 0px;
+}
+
+.form-10 {width: 10%; } 
+.form-20 {width: 20%; }
+.form-30 {width: 30%; }
+.form-40 {width: 40%; }
+.form-50 {width: 50%; }
+.form-60 {width: 60%; }
+.form-70 {width: 70%; }
+.form-80 {width: 80%; }
+.form-90 {width: 90%; }
+.form-100{width: 100%;}
+
+.form_centralizado{margin: auto;}

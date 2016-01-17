@@ -36,7 +36,8 @@
         Localizacao = {};
         var makerLatLng = new Array();
 
-        $(document).ready(function () {                  
+        $(document).ready(function () {
+
             function qs() {
                 var qsparam = new Array(10);
                 var query = window.location.search.substring(1);
@@ -56,10 +57,11 @@
                     Localizacao.lng = lng;
             }
                 var splitstr = qs();
-                queryTabela();
+                queryTabela();                
         });
 
         var map;
+        setTimeout(
         function initialize() {
         var mapOptions = {
         zoom: 12,
@@ -90,7 +92,6 @@
             }
           })(marker, i));
         }
-
         /*
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(Localizacao.lat, Localizacao.lng),
@@ -104,7 +105,7 @@
         // To add the marker to the map, call setMap();
         marker.setMap(map);
         */
-        }
+        }, 3000);
         
          
         google.maps.event.addDomListener(window, 'load', initialize);
